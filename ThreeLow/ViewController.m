@@ -54,6 +54,7 @@
     [self setDiceOutput];
     self.diceButtons = @[self.dieOne, self.dieTwo, self.dieThree,
                          self.dieFour, self.dieFive];
+    []
     
 }
 
