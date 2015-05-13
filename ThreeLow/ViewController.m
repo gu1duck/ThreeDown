@@ -16,10 +16,16 @@
 
 @implementation ViewController
 - (IBAction)resetDice:(id)sender {
-    
+    [self.controller resetDice];
+    for (UIButton* button in self.diceButtons){
+        [button setTitleColor:self.white forState:UIControlStateNormal];
+    }
+    [self displayScore];
+    [self setDiceOutput];
 }
 - (IBAction)rollDice:(id)sender {
     [self.controller rollDice];
+    [self displayScore];
     [self setDiceOutput];
 }
 
@@ -46,6 +52,8 @@
     self.white = [UIColor colorWithRed:1 green:1 blue:1 alpha:1.0];
     self.controller = [GameController gameControllerWithDice];
     [self setDiceOutput];
+    self.diceButtons = @[self.dieOne, self.dieTwo, self.dieThree,
+                         self.dieFour, self.dieFive];
     
 }
 
@@ -75,6 +83,10 @@
         }
         
     }
+}
+
+- (void) displayScore{
+    self.score.text = [NSString stringWithFormat: @"%d",[self.controller returnScore]];
 }
 
 

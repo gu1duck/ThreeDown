@@ -21,8 +21,10 @@
 
 - (void)rollDice{
     [self lockSoftLock];
-    for (id die in self.dice){
-        [die roll];
+    for (Die* die in self.dice){
+        if(!die.locked){
+            [die roll];
+        }
     }
 }
 
@@ -41,7 +43,8 @@
 
 - (BOOL) softLocked: (int) dieNumber {
     BOOL locked = NO;
-    for(NSNumber* index in self.softLock){
+    NSArray* scanner = [NSArray arrayWithArray: self.softLock];
+    for(NSNumber* index in scanner){
         if ([index intValue] == dieNumber){
             locked = YES;
             [self.softLock removeObject:index];
@@ -51,11 +54,30 @@
 }
 
 - (void) lockSoftLock {
-    for (NSNumber* index in self.softLock){
+    NSArray* scanner = [NSArray arrayWithArray: self.softLock];
+    for (NSNumber* index in scanner){
         Die* die = self.dice[[index intValue]];
         die.locked = YES;
         [self.softLock removeObject:index];
     }
+}
+
+-(void) resetDice {
+    for (Die* die in self.dice){
+        die.score = 6;
+        die.locked = NO;
+    }
+    [self.softLock removeAllObjects];
+}
+
+-(int) returnScore {
+    int total = 0;
+    for (Die* die in self.dice){
+        if (die.score != 3){
+            total += die.score;
+        }
+    }
+    return total;
 }
 
 

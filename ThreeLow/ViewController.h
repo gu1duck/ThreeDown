@@ -16,8 +16,10 @@
 @property (strong, nonatomic) IBOutlet UIButton *dieThree;
 @property (strong, nonatomic) IBOutlet UIButton *dieFour;
 @property (strong, nonatomic) IBOutlet UIButton *dieFive;
+@property (strong, nonatomic) IBOutlet UILabel *score;
 @property (nonatomic) UIColor* pink;
 @property (nonatomic) UIColor* white;
+@property (nonatomic) NSArray* diceButtons;
 
 
 @property (nonatomic) GameController* controller;

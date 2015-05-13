@@ -18,5 +18,7 @@
 + (instancetype) gameControllerWithDice;
 - (BOOL)dieIsLocked:(int)index;
 - (BOOL)softLocked: (int) dieNumber;
+- (void) resetDice;
+- (int) returnScore;
 
 @end
